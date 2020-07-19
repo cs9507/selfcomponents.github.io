@@ -2,6 +2,7 @@ const { VueLoaderPlugin} = require("vue-loader")
 const path  = require('path')
 const webpack = require('webpack')
 const htmlWepackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -39,7 +40,7 @@ module.exports = {
         {
           test:/\.(sa|sc|c)ss$/,
           use:[
-            'style-loader',
+            MiniCssExtractPlugin.loader,
             'css-loader',
             {
               loader: 'postcss-loader',
@@ -62,6 +63,9 @@ module.exports = {
     ],
     },
     plugins:[
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].css'
+    }),
       new VueLoaderPlugin(),
       new webpack.ProgressPlugin(),
       new htmlWepackPlugin(
