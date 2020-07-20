@@ -40,7 +40,7 @@ module.exports = {
         {
           test:/\.(sa|sc|c)ss$/,
           use:[
-            MiniCssExtractPlugin.loader,
+            MiniCssExtractPlugin.loader,//用来替换style-loader 不用再装style-loader
             'css-loader',
             {
               loader: 'postcss-loader',
