@@ -1,17 +1,11 @@
 const { VueLoaderPlugin} = require("vue-loader")
 const path  = require('path')
 const webpack = require('webpack')
-const htmlWepackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 module.exports = {
-    entry:'./main.js',
-    output:{
-      path:path.resolve(__dirname, 'dist'),
-      filename: '[name].[contentHash].bundle.js'
-    },
     resolve: {
       extensions: ['.js', '.vue', '.json'],
       alias: {
@@ -33,7 +27,7 @@ module.exports = {
             loader:'babel-loader',
             options:{
               presets: ['@babel/preset-env'],
-              plugins: ['@babel/plugin-transform-runtime']
+              plugins: ['@babel/plugin-transform-runtime','@babel/plugin-transform-modules-umd']  //plugin-transform-modules-umd 解决本地打包umd格式无法直接引用的问题
             }
           }
         },
@@ -68,16 +62,5 @@ module.exports = {
     }),
       new VueLoaderPlugin(),
       new webpack.ProgressPlugin(),
-      new htmlWepackPlugin(
-        {
-          template:'./index.html',
-          hash: true, // 在引用资源的后面增加hash戳
-          minify: {
-            removeComments: true,
-            collapseWhitespace: true, 
-            removeAttributeQuotes: true //删除属性双引号
-          },
-        }
-      )
     ]
   }

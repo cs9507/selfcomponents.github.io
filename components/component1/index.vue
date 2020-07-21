@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "App",
+  name: "component1",
   data() {
     return {};
   },
