@@ -1,4 +1,4 @@
-import component1 from './component1'
+import component1 from './CModal'
 
 const components = [
     component1
