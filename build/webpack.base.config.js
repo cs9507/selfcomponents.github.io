@@ -21,17 +21,6 @@ module.exports = {
           }
         },
         {
-          test:/\.js$/,
-          exclude: /node_modules/,
-          use:{
-            loader:'babel-loader',
-            options:{
-              presets: ['@babel/preset-env'],
-              plugins: ['@babel/plugin-transform-runtime','@babel/plugin-transform-modules-umd']  //plugin-transform-modules-umd 解决本地打包umd格式无法直接引用的问题
-            }
-          }
-        },
-        {
           test:/\.(sa|sc|c)ss$/,
           use:[
             MiniCssExtractPlugin.loader,//用来替换style-loader 不用再装style-loader
@@ -42,18 +31,30 @@ module.exports = {
                 plugins: ()=>{
                   [
                     require('autoprefixer')({
-                        "overrideBrowserslist": [
-                            ">0.25%",
-                            "not dead"
-                        ]
+                      "overrideBrowserslist": [
+                        ">0.25%",
+                        "not dead"
+                      ]
                     })
-                ]}
+                  ]}
               }
             },
-            'sass-loader'
-          ],
-          exclude:/node_modules/
+            'sass-loader',
+            'less-loader'
+          ]
+        },
+        {
+          test:/\.js$/,
+          exclude: /node_modules/,
+          use:{
+            loader:'babel-loader',
+            options:{
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-transform-runtime','@babel/plugin-transform-modules-umd',["import", { "libraryName": "ant-design-vue", "libraryDirectory": "es", "style": "css" }]]  //plugin-transform-modules-umd 解决本地打包umd格式无法直接引用的问题
+            }
+          }
         }
+
     ],
     },
     plugins:[

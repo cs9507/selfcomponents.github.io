@@ -1,9 +1,6 @@
 <template>
   <div class="font">
-    DDD
-    <div>
-      这是我的第一个搭建
-    </div>
+    <Modal></Modal>
   </div>
 </template>
 

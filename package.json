@@ -12,6 +12,9 @@
   "license": "MIT",
   "dependencies": {
     "@babel/plugin-transform-modules-umd": "^7.10.4",
+    "ant-design-vue": "^1.6.4",
+    "babel-plugin-import": "^1.13.0",
+    "less-loader": "^6.2.0",
     "uglifyjs-webpack-plugin": "^2.2.0"
   },
   "devDependencies": {

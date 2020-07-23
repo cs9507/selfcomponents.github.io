@@ -5,6 +5,10 @@ Vue.use(components)
 import App from './App.vue'
 console.log(components)
 
+import { Modal } from 'ant-design-vue';
+
+Vue.use(Modal)
+
 Vue.config.productionTip = false
 new Vue({
   render: (h) => h(App),
